@@ -13,12 +13,18 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.zq.wanandroid.R;
+import com.zq.wanandroid.di.component.DaggerRecommendComponent;
+import com.zq.wanandroid.di.module.RecommendModule;
 import com.zq.wanandroid.http.ApiService;
 import com.zq.wanandroid.http.requestbean.AppInfo;
 import com.zq.wanandroid.http.requestbean.BaseBean;
+import com.zq.wanandroid.presenter.RecommedPresenter;
+import com.zq.wanandroid.presenter.contract.RecommendContract;
 import com.zq.wanandroid.ui.adapter.RecommendAdapter;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -33,10 +39,13 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * Created by zhangqi on 2019/8/14
  */
-public class RecommendFragment extends Fragment {
+public class RecommendFragment extends Fragment implements RecommendContract.View {
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
     Unbinder unbinder;
+
+    @Inject
+    RecommedPresenter presenter;
 
     @Nullable
     @Override
@@ -50,36 +59,24 @@ public class RecommendFragment extends Fragment {
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        Retrofit retrofit = new Retrofit.Builder()
-                .baseUrl(ApiService.BASE_URL)
-                .addConverterFactory(GsonConverterFactory.create())
-                .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
-                .build();
-        ApiService apiService = retrofit.create(ApiService.class);
-        apiService.getApps("{\"page\":0}").enqueue(new Callback<BaseBean<AppInfo>>() {
-            @Override
-            public void onResponse(Call<BaseBean<AppInfo>> call, Response<BaseBean<AppInfo>> response) {
-                List<AppInfo> datas = response.body().getDatas();
-                RecommendAdapter recommendAdapter = new RecommendAdapter(datas, getActivity());
-                recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-                //                为RecyclerView设置分割线(这个可以对DividerItemDecoration进行修改，自定义)
-                recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-                recyclerView.setItemAnimator(new DefaultItemAnimator());
-                recyclerView.setAdapter(recommendAdapter);
-            }
-
-            @Override
-            public void onFailure(Call<BaseBean<AppInfo>> call, Throwable t) {
-
-            }
-        });
-
-
+        DaggerRecommendComponent.builder().recommendModule(new RecommendModule(this))
+                .build().inject(this);
+        presenter.requestData();
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         unbinder.unbind();
+    }
+
+    @Override
+    public void showResult(List<AppInfo> appInfoList) {
+        RecommendAdapter recommendAdapter = new RecommendAdapter(appInfoList, getActivity());
+        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
+        //                为RecyclerView设置分割线(这个可以对DividerItemDecoration进行修改，自定义)
+        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(recommendAdapter);
     }
 }
