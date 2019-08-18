@@ -12,12 +12,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.zq.wanandroid.MyApplication;
 import com.zq.wanandroid.R;
+import com.zq.wanandroid.di.component.AppComponent;
 import com.zq.wanandroid.di.component.DaggerRecommendComponent;
 import com.zq.wanandroid.di.module.RecommendModule;
-import com.zq.wanandroid.http.ApiService;
-import com.zq.wanandroid.http.requestbean.AppInfo;
-import com.zq.wanandroid.http.requestbean.BaseBean;
+import com.zq.wanandroid.http.responsebean.AppInfo;
 import com.zq.wanandroid.presenter.RecommedPresenter;
 import com.zq.wanandroid.presenter.contract.RecommendContract;
 import com.zq.wanandroid.ui.adapter.RecommendAdapter;
@@ -29,45 +29,31 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 /**
  * Created by zhangqi on 2019/8/14
  */
-public class RecommendFragment extends Fragment implements RecommendContract.View {
+public class RecommendFragment extends BaseFragment<RecommedPresenter> implements RecommendContract.View {
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
-    Unbinder unbinder;
-
-    @Inject
-    RecommedPresenter presenter;
-
-    @Nullable
-    @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_other, container, false);
-        unbinder = ButterKnife.bind(this, view);
-        return view;
-    }
 
     @Override
-    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
-        super.onActivityCreated(savedInstanceState);
-
-        DaggerRecommendComponent.builder().recommendModule(new RecommendModule(this))
-                .build().inject(this);
+    protected void init() {
         presenter.requestData();
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        unbinder.unbind();
+    protected int setLayout() {
+        return R.layout.fragment_other;
+    }
+
+    @Override
+    protected void setAppcomponent(AppComponent appcomponent) {
+
+        DaggerRecommendComponent.builder().appComponent(appcomponent)
+                .recommendModule(new RecommendModule(this))
+                .build()
+                .inject(this);
     }
 
     @Override
@@ -78,5 +64,15 @@ public class RecommendFragment extends Fragment implements RecommendContract.Vie
         recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
         recyclerView.setItemAnimator(new DefaultItemAnimator());
         recyclerView.setAdapter(recommendAdapter);
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void dismissLoading() {
+
     }
 }

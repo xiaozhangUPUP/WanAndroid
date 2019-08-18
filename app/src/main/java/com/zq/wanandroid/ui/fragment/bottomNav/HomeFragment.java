@@ -1,4 +1,4 @@
-package com.zq.wanandroid.ui.fragment;
+package com.zq.wanandroid.ui.fragment.bottomNav;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;

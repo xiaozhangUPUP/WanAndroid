@@ -1,9 +1,8 @@
 package com.zq.wanandroid.http;
 
-import com.zq.wanandroid.http.requestbean.AppInfo;
-import com.zq.wanandroid.http.requestbean.BaseBean;
+import com.zq.wanandroid.http.responsebean.AppInfo;
+import com.zq.wanandroid.http.responsebean.BaseBean;
 
-import io.reactivex.Observable;
 import retrofit2.Call;
 import retrofit2.http.GET;
 import retrofit2.http.Query;

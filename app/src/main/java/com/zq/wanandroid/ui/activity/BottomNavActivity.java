@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentTransaction;
 import android.support.v4.view.LayoutInflaterCompat;
 import android.support.v7.app.AppCompatActivity;
@@ -14,15 +13,17 @@ import android.util.Log;
 import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.iconics.context.IconicsLayoutInflater;
 import com.zq.wanandroid.R;
+import com.zq.wanandroid.di.component.AppComponent;
+import com.zq.wanandroid.di.component.DaggerRecommendComponent;
+import com.zq.wanandroid.di.module.RecommendModule;
 import com.zq.wanandroid.fonts.AppIcons;
-import com.zq.wanandroid.ui.fragment.HomeFragment;
-import com.zq.wanandroid.ui.fragment.OtherFragment;
-import com.zq.wanandroid.ui.fragment.SettingFragment;
+import com.zq.wanandroid.ui.fragment.bottomNav.HomeFragment;
+import com.zq.wanandroid.ui.fragment.bottomNav.OtherFragment;
+import com.zq.wanandroid.ui.fragment.bottomNav.SettingFragment;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -30,7 +31,7 @@ import java.util.List;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class BottomNavActivity extends AppCompatActivity {
+public class BottomNavActivity extends BaseActivity {
 
     private static final String TAG = BottomNavActivity.class.getSimpleName();
     @BindView(R.id.navigation)
@@ -50,16 +51,8 @@ public class BottomNavActivity extends AppCompatActivity {
     private List<Fragment> fragmentList;
     private IconicsDrawable homeIcon, otherIcon, settingIcon, homeIconChecked, otherIconChecked, settingIconChecked;
 
-
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
-        // 设置icons
-        LayoutInflaterCompat.setFactory(getLayoutInflater(), new IconicsLayoutInflater(getDelegate()));
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_bottom_nav);
-        ButterKnife.bind(this);
-
-
+    protected void init() {
         homeIcon = new IconicsDrawable(this, AppIcons.Icon.appicon_bottm_nav_home);
         otherIcon = new IconicsDrawable(this, AppIcons.Icon.appicon_bottm_nav_other);
         settingIcon = new IconicsDrawable(this, AppIcons.Icon.appicon_bottm_nav_setting);
@@ -67,11 +60,19 @@ public class BottomNavActivity extends AppCompatActivity {
         otherIconChecked = new IconicsDrawable(this, AppIcons.Icon.appicon_bottm_nav_other).color(Color.RED);
         settingIconChecked = new IconicsDrawable(this, AppIcons.Icon.appicon_bottm_nav_setting).color(Color.RED);
 
-
         resetToDefaultIcon();
         initFragment();
         setListener();
         navigation.setSelectedItemId(navigation.getMenu().findItem(R.id.navigation_home).getItemId());
+    }
+
+    @Override
+    protected int setLayout() {
+        return R.layout.activity_bottom_nav;
+    }
+
+    @Override
+    protected void setAppcomponent(AppComponent appcomponent) {
     }
 
     private void initFragment() {

@@ -3,18 +3,16 @@ package com.zq.wanandroid.ui.adapter;
 import android.content.Context;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.zq.wanandroid.R;
-import com.zq.wanandroid.http.requestbean.AppInfo;
+import com.zq.wanandroid.http.responsebean.AppInfo;
 
 import java.util.List;
 

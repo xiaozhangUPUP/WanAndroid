@@ -1,4 +1,4 @@
-package com.zq.wanandroid.http.requestbean;
+package com.zq.wanandroid.http.responsebean;
 
 import java.io.Serializable;
 import java.util.List;

@@ -1,4 +1,4 @@
-package com.zq.wanandroid.ui.fragment;
+package com.zq.wanandroid.ui.fragment.bottomNav;
 
 import android.annotation.SuppressLint;
 import android.content.Context;

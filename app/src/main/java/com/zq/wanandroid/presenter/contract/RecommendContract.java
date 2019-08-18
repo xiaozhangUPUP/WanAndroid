@@ -1,6 +1,6 @@
 package com.zq.wanandroid.presenter.contract;
 
-import com.zq.wanandroid.http.requestbean.AppInfo;
+import com.zq.wanandroid.http.responsebean.AppInfo;
 import com.zq.wanandroid.presenter.BasePresenter;
 import com.zq.wanandroid.presenter.BaseView;
 
@@ -15,7 +15,4 @@ public interface RecommendContract {
         void showResult(List<AppInfo> appInfoList);
     }
 
-    interface Presenter extends BasePresenter {
-        void requestData();
-    }
 }

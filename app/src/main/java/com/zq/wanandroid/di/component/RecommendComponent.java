@@ -13,7 +13,7 @@ import dagger.Component;
  * Created by zhangqi on 2019/8/16
  */
 @FragmentScope
-@Component(modules = RecommendModule.class)
+@Component(modules = RecommendModule.class, dependencies = AppComponent.class)
 public interface RecommendComponent {
     void inject(RecommendFragment fragment);
 }
