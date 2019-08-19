@@ -7,7 +7,7 @@ import com.zq.wanandroid.di.component.AppComponent;
 import com.zq.wanandroid.di.component.DaggerAppComponent;
 import com.zq.wanandroid.di.module.AppModule;
 import com.zq.wanandroid.di.module.HttpModule;
-import com.zq.wanandroid.fonts.AppIcons;
+import com.zq.wanandroid.common.fonts.AppIcons;
 
 /**
  * Created by zhangqi on 2019/8/16

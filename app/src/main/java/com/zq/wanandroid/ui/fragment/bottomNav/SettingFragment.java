@@ -1,25 +1,18 @@
 package com.zq.wanandroid.ui.fragment.bottomNav;
 
-import android.annotation.SuppressLint;
-import android.content.Context;
-import android.graphics.Color;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
-import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
-import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
-import android.view.WindowManager;
 import android.widget.ImageView;
 
 import com.mikepenz.iconics.IconicsDrawable;
-import com.mikepenz.ionicons_typeface_library.Ionicons;
 import com.zq.wanandroid.R;
-import com.zq.wanandroid.fonts.AppIcons;
+import com.zq.wanandroid.common.fonts.AppIcons;
 
 /**
  * Created by zhangqi on 2019/8/14

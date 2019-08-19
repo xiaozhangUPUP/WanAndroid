@@ -1,4 +1,4 @@
-package com.zq.wanandroid.fonts;
+package com.zq.wanandroid.common.fonts;
 
 import android.content.Context;
 import android.graphics.Typeface;

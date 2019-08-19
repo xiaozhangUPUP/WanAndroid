@@ -71,9 +71,4 @@ public class HttpModule {
         return retrofit.create(ApiService.class);
     }
 
-//    @Provides
-//    @Singleton
-//    public RxErrorHandler provideRxErrorHandler(Application application) {
-//        return new RxErrorHandler(application);
-//    }
 }

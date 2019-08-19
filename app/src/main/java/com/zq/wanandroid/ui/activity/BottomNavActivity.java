@@ -1,13 +1,10 @@
 package com.zq.wanandroid.ui.activity;
 
 import android.graphics.Color;
-import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
-import android.support.v4.view.LayoutInflaterCompat;
-import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
@@ -15,12 +12,9 @@ import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
 import com.mikepenz.iconics.IconicsDrawable;
-import com.mikepenz.iconics.context.IconicsLayoutInflater;
 import com.zq.wanandroid.R;
 import com.zq.wanandroid.di.component.AppComponent;
-import com.zq.wanandroid.di.component.DaggerRecommendComponent;
-import com.zq.wanandroid.di.module.RecommendModule;
-import com.zq.wanandroid.fonts.AppIcons;
+import com.zq.wanandroid.common.fonts.AppIcons;
 import com.zq.wanandroid.ui.fragment.bottomNav.HomeFragment;
 import com.zq.wanandroid.ui.fragment.bottomNav.OtherFragment;
 import com.zq.wanandroid.ui.fragment.bottomNav.SettingFragment;
@@ -29,7 +23,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class BottomNavActivity extends BaseActivity {
 

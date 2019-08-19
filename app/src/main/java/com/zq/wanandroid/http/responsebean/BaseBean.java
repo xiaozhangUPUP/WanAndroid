@@ -1,28 +1,15 @@
 package com.zq.wanandroid.http.responsebean;
 
-import java.util.List;
+import java.io.Serializable;
 
-public class BaseBean<T> {
-
-
-    /**
-     * hasMore : false
-     * datas : []
-     * status : 1
-     * message : success
-     */
-
-    private boolean hasMore;
+public class BaseBean<T> implements Serializable {
+    private static final int STATUS_SUCCESS = 1;
     private int status;
     private String message;
-    private List<T> datas;
+    private T data;
 
-    public boolean isHasMore() {
-        return hasMore;
-    }
-
-    public void setHasMore(boolean hasMore) {
-        this.hasMore = hasMore;
+    public boolean success() {
+        return status == STATUS_SUCCESS;
     }
 
     public int getStatus() {
@@ -41,11 +28,11 @@ public class BaseBean<T> {
         this.message = message;
     }
 
-    public List<T> getDatas() {
-        return datas;
+    public T getData() {
+        return data;
     }
 
-    public void setDatas(List<T> datas) {
-        this.datas = datas;
+    public void setData(T data) {
+        this.data = data;
     }
 }
