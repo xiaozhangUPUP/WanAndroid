@@ -33,7 +33,7 @@ import butterknife.Unbinder;
 /**
  * Created by zhangqi on 2019/8/14
  */
-public class RecommendFragment extends BaseFragment<RecommedPresenter> implements RecommendContract.View {
+public class RecommendFragment extends ProgressFragment<RecommedPresenter> implements RecommendContract.View {
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
 
@@ -57,6 +57,11 @@ public class RecommendFragment extends BaseFragment<RecommedPresenter> implement
     }
 
     @Override
+    protected void onEmptyViewClick() {
+        init();
+    }
+
+    @Override
     public void showResult(List<AppInfo> appInfoList) {
         RecommendAdapter recommendAdapter = new RecommendAdapter(appInfoList, getActivity());
         recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
@@ -66,13 +71,4 @@ public class RecommendFragment extends BaseFragment<RecommedPresenter> implement
         recyclerView.setAdapter(recommendAdapter);
     }
 
-    @Override
-    public void showLoading() {
-
-    }
-
-    @Override
-    public void dismissLoading() {
-
-    }
 }

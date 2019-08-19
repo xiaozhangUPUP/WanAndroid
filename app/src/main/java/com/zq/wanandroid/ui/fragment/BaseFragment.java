@@ -14,13 +14,14 @@ import com.zq.wanandroid.MyApplication;
 import com.zq.wanandroid.R;
 import com.zq.wanandroid.di.component.AppComponent;
 import com.zq.wanandroid.presenter.BasePresenter;
+import com.zq.wanandroid.presenter.BaseView;
 
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public abstract class BaseFragment<T extends BasePresenter> extends Fragment {
+public abstract class BaseFragment<T extends BasePresenter> extends Fragment implements BaseView{
 
     private Unbinder unbinder;
 
