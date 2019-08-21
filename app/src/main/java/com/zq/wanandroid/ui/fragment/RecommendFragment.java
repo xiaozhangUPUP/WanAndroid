@@ -8,6 +8,7 @@ import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,8 +19,10 @@ import com.zq.wanandroid.di.component.AppComponent;
 import com.zq.wanandroid.di.component.DaggerRecommendComponent;
 import com.zq.wanandroid.di.module.RecommendModule;
 import com.zq.wanandroid.http.responsebean.AppInfo;
+import com.zq.wanandroid.http.responsebean.IndexBean;
 import com.zq.wanandroid.presenter.RecommedPresenter;
 import com.zq.wanandroid.presenter.contract.RecommendContract;
+import com.zq.wanandroid.ui.adapter.IndexMixAdapter;
 import com.zq.wanandroid.ui.adapter.RecommendAdapter;
 
 import java.util.List;
@@ -34,6 +37,7 @@ import butterknife.Unbinder;
  * Created by zhangqi on 2019/8/14
  */
 public class RecommendFragment extends ProgressFragment<RecommedPresenter> implements RecommendContract.View {
+    private static final String TAG = RecommendFragment.class.getSimpleName();
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
 
@@ -62,13 +66,17 @@ public class RecommendFragment extends ProgressFragment<RecommedPresenter> imple
     }
 
     @Override
-    public void showResult(List<AppInfo> appInfoList) {
-        RecommendAdapter recommendAdapter = new RecommendAdapter(appInfoList, getActivity());
-        recyclerView.setLayoutManager(new LinearLayoutManager(getActivity()));
-        //                为RecyclerView设置分割线(这个可以对DividerItemDecoration进行修改，自定义)
-        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
-        recyclerView.setItemAnimator(new DefaultItemAnimator());
-        recyclerView.setAdapter(recommendAdapter);
+    public void showResult(IndexBean indexBean) {
+        initRecyclerview(indexBean);
     }
 
+    private void initRecyclerview(IndexBean indexBean) {
+        Log.e(TAG, "initRecyclerview:    " + contentView.getVisibility());
+        IndexMixAdapter indexMixAdapter = new IndexMixAdapter(activity, indexBean);
+        recyclerView.setLayoutManager(new LinearLayoutManager(activity));
+        //                为RecyclerView设置分割线(这个可以对DividerItemDecoration进行修改，自定义)
+//        recyclerView.addItemDecoration(new DividerItemDecoration(getActivity(), DividerItemDecoration.VERTICAL));
+        recyclerView.setItemAnimator(new DefaultItemAnimator());
+        recyclerView.setAdapter(indexMixAdapter);
+    }
 }

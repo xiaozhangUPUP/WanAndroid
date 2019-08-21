@@ -73,7 +73,7 @@ public abstract class ProgressFragment<T extends BasePresenter> extends Fragment
     }
 
     private void setRealContentView() {
-        View realContentView = LayoutInflater.from(activity).inflate(setLayout(), rootView, true);
+        View realContentView = LayoutInflater.from(activity).inflate(setLayout(), contentView, true);
         unbinder = ButterKnife.bind(this, realContentView);
     }
 

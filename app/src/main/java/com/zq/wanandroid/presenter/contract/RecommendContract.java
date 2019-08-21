@@ -1,6 +1,7 @@
 package com.zq.wanandroid.presenter.contract;
 
 import com.zq.wanandroid.http.responsebean.AppInfo;
+import com.zq.wanandroid.http.responsebean.IndexBean;
 import com.zq.wanandroid.presenter.BasePresenter;
 import com.zq.wanandroid.presenter.BaseView;
 
@@ -12,7 +13,7 @@ import java.util.List;
 public interface RecommendContract {
 
     interface View extends BaseView {
-        void showResult(List<AppInfo> appInfoList);
+        void showResult(IndexBean indexBean);
     }
 
 }

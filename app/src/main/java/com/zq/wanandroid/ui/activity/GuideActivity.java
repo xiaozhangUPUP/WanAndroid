@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 
 import com.zq.wanandroid.R;
-import com.zq.wanandroid.common.Constant;
+import com.zq.wanandroid.common.Constants;
 import com.zq.wanandroid.common.util.ACache;
 import com.zq.wanandroid.common.util.DensityUtil;
 import com.zq.wanandroid.ui.adapter.GuideViewPagerAdapter;
@@ -44,7 +44,7 @@ public class GuideActivity extends AppCompatActivity {
         setContentView(R.layout.activity_guide);
         ButterKnife.bind(this);
 
-        if (!TextUtils.isEmpty(ACache.get(this).getAsString(Constant.IS_SHOW_GUIDE))) {
+        if (!TextUtils.isEmpty(ACache.get(this).getAsString(Constants.IS_SHOW_GUIDE))) {
             jumpToHome();
             finish();
             return;
@@ -100,7 +100,7 @@ public class GuideActivity extends AppCompatActivity {
     @OnClick(R.id.guide_btn_enter)
     public void onViewClicked() {
         ACache.get(this)
-                .put(Constant.IS_SHOW_GUIDE, "false");
+                .put(Constants.IS_SHOW_GUIDE, "false");
         jumpToHome();
     }
 

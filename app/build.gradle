@@ -63,4 +63,9 @@ dependencies {
     //icons
     implementation 'com.mikepenz:iconics-core:2.8.1@aar'
     implementation 'com.mikepenz:ionicons-typeface:2.0.1.2@aar'
+
+    // banner
+    implementation 'com.youth.banner:banner:1.4.10'  //最新版本
+
+    implementation 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.47'
 }

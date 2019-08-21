@@ -22,15 +22,22 @@ public class RecommedPresenter extends BasePresenter<RecommendModel, RecommendCo
     }
 
     public void requestData() {
-
-        mModel.getApps()
-                .compose(RxHttpResponseCompose.<PageBean<AppInfo>>compatResult())
-                .subscribe(new ProgressObserver<PageBean<AppInfo>>(mContext, mView) {
+        mModel.index().compose(RxHttpResponseCompose.<IndexBean>compatResult())
+                .subscribe(new ProgressObserver<IndexBean>(mContext, mView) {
                     @Override
-                    public void onNext(PageBean<AppInfo> appInfoPageBean) {
-                        mView.showResult(appInfoPageBean.getDatas());
+                    public void onNext(IndexBean indexBean) {
+                        mView.showResult(indexBean);
                     }
                 });
+
+//        mModel.getApps()
+//                .compose(RxHttpResponseCompose.<PageBean<AppInfo>>compatResult())
+//                .subscribe(new ProgressObserver<PageBean<AppInfo>>(mContext, mView) {
+//                    @Override
+//                    public void onNext(PageBean<AppInfo> appInfoPageBean) {
+//                        mView.showResult(appInfoPageBean.getDatas());
+//                    }
+//                });
 
     }
 }

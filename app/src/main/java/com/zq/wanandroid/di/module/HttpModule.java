@@ -3,6 +3,7 @@ package com.zq.wanandroid.di.module;
 import android.app.Application;
 
 import com.google.gson.Gson;
+import com.zq.wanandroid.common.CommonParamsInterceptor;
 import com.zq.wanandroid.http.ApiService;
 
 import java.util.concurrent.TimeUnit;
@@ -38,7 +39,7 @@ public class HttpModule {
                 // HeadInterceptor实现了Interceptor，用来往Request Header添加一些业务相关数据，如APP版本，token信息
                 //                .addInterceptor(new HeadInterceptor())
                 .addInterceptor(logging)
-//                .addInterceptor(new CommonParamsInterceptor(application, gson))
+                .addInterceptor(new CommonParamsInterceptor(application, gson))
                 // 连接超时时间设置
                 .connectTimeout(10, TimeUnit.SECONDS)
                 // 读取超时时间设置
