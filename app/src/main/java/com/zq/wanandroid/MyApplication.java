@@ -1,6 +1,7 @@
 package com.zq.wanandroid;
 
 import android.app.Application;
+import android.view.View;
 
 import com.mikepenz.iconics.Iconics;
 import com.zq.wanandroid.di.component.AppComponent;
@@ -15,6 +16,16 @@ import com.zq.wanandroid.common.fonts.AppIcons;
 public class MyApplication extends Application {
 
     private static AppComponent appComponent;
+
+    public View getView() {
+        return view;
+    }
+
+    public void setView(View view) {
+        this.view = view;
+    }
+
+    private View view;
 
     @Override
     public void onCreate() {

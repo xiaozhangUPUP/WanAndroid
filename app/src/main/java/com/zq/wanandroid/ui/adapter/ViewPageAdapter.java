@@ -7,7 +7,7 @@ import android.support.v4.app.FragmentStatePagerAdapter;
 
 import com.zq.wanandroid.bean.FragmentInfo;
 import com.zq.wanandroid.ui.fragment.CategoryFragment;
-import com.zq.wanandroid.ui.fragment.RankingFragment;
+import com.zq.wanandroid.ui.fragment.TopListFragment;
 import com.zq.wanandroid.ui.fragment.RecommendFragment;
 
 import java.util.ArrayList;
@@ -29,7 +29,7 @@ public class ViewPageAdapter extends FragmentStatePagerAdapter {
     private void initFragments() {
         fragmentList = new ArrayList<>();
         fragmentList.add(new FragmentInfo("推荐", new RecommendFragment()));
-        fragmentList.add(new FragmentInfo("排行", new RankingFragment()));
+        fragmentList.add(new FragmentInfo("排行", new TopListFragment()));
         fragmentList.add(new FragmentInfo("分类", new CategoryFragment()));
     }
 

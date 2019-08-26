@@ -23,7 +23,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".SearchActivity" />
-        <activity android:name=".ui.activity.BottomNavActivity"></activity>
+        <activity android:name=".ui.activity.BottomNavActivity" />
+        <activity android:name=".ui.activity.CategoryAppActivity" />
+        <activity android:name=".ui.activity.AppDetailActivity"
+            android:theme="@style/AppTheme.Transparent"></activity>
     </application>
 
 </manifest>

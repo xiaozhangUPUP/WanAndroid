@@ -4,6 +4,8 @@ package com.zq.wanandroid.common;
  * Created by zhangqi on 2019/8/19
  */
 public class Constants {
+
+    public static final String BASE_IMG_URL = "http://file.market.xiaomi.com/mfc/thumbnail/png/w150q80/";
     public static final String IS_SHOW_GUIDE = "is_show_guide";
 
 
@@ -18,4 +20,9 @@ public class Constants {
 
     public static final String TOKEN = "token";
     public static final String USER = "user";
+
+    public static final String CATEGORY = "category";
+
+    public static final String ITEM_APP_INFO_OBJ = "item_app_info_obj";
+
 }

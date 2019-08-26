@@ -1,23 +1,18 @@
 package com.zq.wanandroid.presenter;
 
 import com.zq.wanandroid.common.RxHttpResponseCompose;
-import com.zq.wanandroid.common.subscriber.ErrorHandlerObserver;
 import com.zq.wanandroid.common.subscriber.ProgressObserver;
-import com.zq.wanandroid.http.responsebean.AppInfo;
 import com.zq.wanandroid.http.responsebean.IndexBean;
-import com.zq.wanandroid.http.responsebean.PageBean;
-import com.zq.wanandroid.model.RecommendModel;
-import com.zq.wanandroid.presenter.contract.RecommendContract;
-
-import io.reactivex.disposables.Disposable;
+import com.zq.wanandroid.model.AppInfoModel;
+import com.zq.wanandroid.presenter.contract.AppInfoContract;
 
 /**
  * Created by zhangqi on 2019/8/16
  */
-public class RecommedPresenter extends BasePresenter<RecommendModel, RecommendContract.View> {
+public class RecommedPresenter extends BasePresenter<AppInfoModel, AppInfoContract.View> {
 
 
-    public RecommedPresenter(RecommendModel mModel, RecommendContract.View mView) {
+    public RecommedPresenter(AppInfoModel mModel, AppInfoContract.View mView) {
         super(mModel, mView);
     }
 

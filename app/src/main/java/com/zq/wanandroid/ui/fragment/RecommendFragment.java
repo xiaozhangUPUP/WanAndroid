@@ -1,42 +1,25 @@
 package com.zq.wanandroid.ui.fragment;
 
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
-import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 
-import com.zq.wanandroid.MyApplication;
 import com.zq.wanandroid.R;
 import com.zq.wanandroid.di.component.AppComponent;
 import com.zq.wanandroid.di.component.DaggerRecommendComponent;
 import com.zq.wanandroid.di.module.RecommendModule;
-import com.zq.wanandroid.http.responsebean.AppInfo;
 import com.zq.wanandroid.http.responsebean.IndexBean;
 import com.zq.wanandroid.presenter.RecommedPresenter;
-import com.zq.wanandroid.presenter.contract.RecommendContract;
+import com.zq.wanandroid.presenter.contract.AppInfoContract;
 import com.zq.wanandroid.ui.adapter.IndexMixAdapter;
-import com.zq.wanandroid.ui.adapter.RecommendAdapter;
-
-import java.util.List;
-
-import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 
 /**
  * Created by zhangqi on 2019/8/14
  */
-public class RecommendFragment extends ProgressFragment<RecommedPresenter> implements RecommendContract.View {
+public class RecommendFragment extends ProgressFragment<RecommedPresenter> implements AppInfoContract.View {
     private static final String TAG = RecommendFragment.class.getSimpleName();
     @BindView(R.id.recycler_view)
     RecyclerView recyclerView;
@@ -48,7 +31,7 @@ public class RecommendFragment extends ProgressFragment<RecommedPresenter> imple
 
     @Override
     protected int setLayout() {
-        return R.layout.fragment_other;
+        return R.layout.template_recycler_view;
     }
 
     @Override
@@ -59,6 +42,7 @@ public class RecommendFragment extends ProgressFragment<RecommedPresenter> imple
                 .build()
                 .inject(this);
     }
+
 
     @Override
     protected void onEmptyViewClick() {

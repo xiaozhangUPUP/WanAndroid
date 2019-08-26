@@ -1,14 +1,10 @@
 package com.zq.wanandroid.di.module;
 
-import android.content.Context;
-
 import com.zq.wanandroid.di.anno.FragmentScope;
 import com.zq.wanandroid.http.ApiService;
-import com.zq.wanandroid.model.RecommendModel;
+import com.zq.wanandroid.model.AppInfoModel;
 import com.zq.wanandroid.presenter.RecommedPresenter;
-import com.zq.wanandroid.presenter.contract.RecommendContract;
-
-import javax.inject.Singleton;
+import com.zq.wanandroid.presenter.contract.AppInfoContract;
 
 import dagger.Module;
 import dagger.Provides;
@@ -19,22 +15,22 @@ import dagger.Provides;
 @Module
 public class RecommendModule {
 
-    private RecommendContract.View view;
+    private AppInfoContract.View view;
 
-    public RecommendModule(RecommendContract.View view) {
+    public RecommendModule(AppInfoContract.View view) {
         this.view = view;
     }
 
     @Provides
     @FragmentScope
-    public RecommedPresenter provideRecommendPresenter(RecommendModel model) {
+    public RecommedPresenter provideRecommendPresenter(AppInfoModel model) {
         return new RecommedPresenter(model, view);
     }
 
     @Provides
     @FragmentScope
-    public RecommendModel provideRecommendModel(ApiService apiService) {
-        return new RecommendModel(apiService);
+    public AppInfoModel provideRecommendModel(ApiService apiService) {
+        return new AppInfoModel(apiService);
     }
 
 }

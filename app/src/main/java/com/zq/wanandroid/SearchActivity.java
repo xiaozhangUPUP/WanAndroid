@@ -55,7 +55,7 @@ public class SearchActivity extends AppCompatActivity {
         setContentView(R.layout.activity_search);
         ButterKnife.bind(this);
 
-
+        View.inflate(this, R.layout.abcd,null);
         RxTextView.textChanges(searchInput).skipInitialValue()
                 .debounce(500, TimeUnit.MILLISECONDS)
                 .filter(new Predicate<CharSequence>() {
