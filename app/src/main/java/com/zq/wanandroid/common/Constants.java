@@ -25,4 +25,6 @@ public class Constants {
 
     public static final String ITEM_APP_INFO_OBJ = "item_app_info_obj";
 
+    public static final String APP_ID = "app_id";
+
 }

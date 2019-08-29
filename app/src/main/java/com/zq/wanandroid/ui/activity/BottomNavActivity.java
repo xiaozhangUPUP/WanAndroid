@@ -11,23 +11,18 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
 
-import com.bumptech.glide.Glide;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.zq.wanandroid.R;
-import com.zq.wanandroid.common.Constants;
-import com.zq.wanandroid.common.util.ACache;
-import com.zq.wanandroid.di.component.AppComponent;
 import com.zq.wanandroid.common.fonts.AppIcons;
-import com.zq.wanandroid.http.responsebean.User;
-import com.zq.wanandroid.ui.fragment.bottomNav.HomeFragment;
+import com.zq.wanandroid.di.component.AppComponent;
 import com.zq.wanandroid.ui.fragment.OtherFragment;
+import com.zq.wanandroid.ui.fragment.bottomNav.HomeFragment;
 import com.zq.wanandroid.ui.fragment.bottomNav.SettingFragment;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
-import jp.wasabeef.glide.transformations.CropCircleTransformation;
 
 public class BottomNavActivity extends BaseActivity {
 

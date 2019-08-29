@@ -1,17 +1,11 @@
 package com.zq.wanandroid.ui.fragment;
 
 import android.content.Intent;
-import android.os.Bundle;
-import android.support.annotation.NonNull;
-import android.support.annotation.Nullable;
-import android.support.v4.app.Fragment;
 import android.support.v7.widget.DefaultItemAnimator;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
 
 import com.chad.library.adapter.base.BaseQuickAdapter;
 import com.chad.library.adapter.base.listener.OnItemClickListener;
@@ -21,12 +15,10 @@ import com.zq.wanandroid.di.component.AppComponent;
 import com.zq.wanandroid.di.component.DaggerCategoryComponent;
 import com.zq.wanandroid.di.module.CategoryModule;
 import com.zq.wanandroid.http.responsebean.Category;
-import com.zq.wanandroid.presenter.AppInfoPresenter;
 import com.zq.wanandroid.presenter.CategoryPresenter;
 import com.zq.wanandroid.presenter.contract.CategoryContract;
-import com.zq.wanandroid.ui.activity.CategoryAdapter;
+import com.zq.wanandroid.ui.adapter.CategoryAdapter;
 import com.zq.wanandroid.ui.activity.CategoryAppActivity;
-import com.zq.wanandroid.ui.adapter.AppInfoAdapter;
 
 import java.io.Serializable;
 import java.util.List;

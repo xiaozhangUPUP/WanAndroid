@@ -3,6 +3,7 @@ package com.zq.wanandroid.ui.activity;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.animation.ObjectAnimator;
+import android.annotation.TargetApi;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.drawable.BitmapDrawable;
@@ -12,10 +13,9 @@ import android.support.annotation.RequiresApi;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.CoordinatorLayout;
-import android.support.v7.widget.RecyclerView;
+import android.support.v4.app.FragmentTransaction;
 import android.support.v7.widget.Toolbar;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -30,30 +30,32 @@ import com.zq.wanandroid.common.Constants;
 import com.zq.wanandroid.common.util.DensityUtil;
 import com.zq.wanandroid.di.component.AppComponent;
 import com.zq.wanandroid.http.responsebean.AppInfo;
+import com.zq.wanandroid.ui.fragment.AppDetailFragment;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
 
 public class AppDetailActivity extends BaseActivity {
 
+
     @BindView(R.id.view_temp)
-    ImageView viewTemp;
-//    @BindView(R.id.img_icon)
-//    ImageView imgIcon;
-//    @BindView(R.id.toolbar)
-//    Toolbar toolbar;
-//    @BindView(R.id.toolbar_layout)
-//    CollapsingToolbarLayout toolbarLayout;
-//    @BindView(R.id.app_bar)
-//    AppBarLayout appBar;
-//    @BindView(R.id.view_content)
-//    FrameLayout viewContent;
-//    @BindView(R.id.txt_name)
-//    TextView txtName;
-//    @BindView(R.id.view_coordinator)
-//    CoordinatorLayout viewCoordinator;
+    View viewTemp;
+    @BindView(R.id.img_icon)
+    ImageView imgIcon;
+    @BindView(R.id.toolbar)
+    Toolbar toolbar;
+    @BindView(R.id.toolbar_layout)
+    CollapsingToolbarLayout collapsingToolbar;
+    @BindView(R.id.app_bar)
+    AppBarLayout appBar;
+    @BindView(R.id.view_content)
+    FrameLayout viewContent;
+    @BindView(R.id.view_coordinator)
+    CoordinatorLayout coordinator;
+    @BindView(R.id.txt_name)
+    TextView txtName;
 
     private View cacheView;
+
     private AppInfo appInfo;
 
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
@@ -64,25 +66,26 @@ public class AppDetailActivity extends BaseActivity {
 
     }
 
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
     @RequiresApi(api = Build.VERSION_CODES.JELLY_BEAN)
     private void initView() {
         cacheView = ((MyApplication) getApplication()).getView();
-//        Glide.with(this)
-//                .load(Constants.BASE_IMG_URL + appInfo.getIcon())
-//                .into(imgIcon);
-//        txtName.setText(appInfo.getDisplayName());
-//
-//        toolbar.setNavigationIcon(
-//                new IconicsDrawable(this)
-//                        .icon(Ionicons.Icon.ion_ios_arrow_back)
-//                        .sizeDp(16));
-//
-//        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                finish();
-//            }
-//        });
+        Glide.with(this)
+                .load(Constants.BASE_IMG_URL + appInfo.getIcon())
+                .into(imgIcon);
+        txtName.setText(appInfo.getDisplayName());
+        //        collapsingToolbar.setTitle(appInfo.getDisplayName());
+        toolbar.setNavigationIcon(
+                new IconicsDrawable(this)
+                        .icon(Ionicons.Icon.ion_ios_arrow_back)
+                        .sizeDp(16));
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
 
         // 获取缓存图像
         Bitmap viemBitmapCache = getViemBitmapCache(cacheView);
@@ -110,6 +113,8 @@ public class AppDetailActivity extends BaseActivity {
             @Override
             public void onAnimationEnd(Animator animation) {
                 viewTemp.setVisibility(View.GONE);
+                coordinator.setVisibility(View.VISIBLE);
+                initFragment();
             }
 
         });
@@ -129,17 +134,17 @@ public class AppDetailActivity extends BaseActivity {
 
         int statusBarH = DensityUtil.getStatusBarH(this);
 
-//        ViewGroup.MarginLayoutParams marginLayoutParams = new ViewGroup.MarginLayoutParams(cacheView.getLayoutParams());
-//        marginLayoutParams.leftMargin = left;
-//        marginLayoutParams.topMargin = top - statusBarH;
-//        marginLayoutParams.width = cacheView.getWidth();
-//        marginLayoutParams.height = cacheView.getHeight();
-//        int dif = DensityUtil.getScreenH(this) - top;
-//        if (dif < cacheView.getHeight()) {
-//            //            marginLayoutParams.topMargin = DensityUtil.getScreenH(this) - view.getHeight() - statusBarH;
-//            marginLayoutParams.topMargin = top - statusBarH - (cacheView.getHeight() - dif);
-//        }
-//        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(marginLayoutParams);
+        //        ViewGroup.MarginLayoutParams marginLayoutParams = new ViewGroup.MarginLayoutParams(cacheView.getLayoutParams());
+        //        marginLayoutParams.leftMargin = left;
+        //        marginLayoutParams.topMargin = top - statusBarH;
+        //        marginLayoutParams.width = cacheView.getWidth();
+        //        marginLayoutParams.height = cacheView.getHeight();
+        //        int dif = DensityUtil.getScreenH(this) - top;
+        //        if (dif < cacheView.getHeight()) {
+        //            //            marginLayoutParams.topMargin = DensityUtil.getScreenH(this) - view.getHeight() - statusBarH;
+        //            marginLayoutParams.topMargin = top - statusBarH - (cacheView.getHeight() - dif);
+        //        }
+        //        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(marginLayoutParams);
 
 
         LinearLayout.LayoutParams marginLayoutParams = new LinearLayout.LayoutParams(cacheView.getLayoutParams());
@@ -188,6 +193,18 @@ public class AppDetailActivity extends BaseActivity {
         bitmap = Bitmap.createBitmap(bitmap);
         view.destroyDrawingCache();
         return bitmap;
+    }
+
+    private void initFragment() {
+        AppDetailFragment appDetailFragment = new AppDetailFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt(Constants.APP_ID, appInfo.getId());
+        appDetailFragment.setArguments(bundle);
+
+        FragmentTransaction transaction =
+                getSupportFragmentManager().beginTransaction();
+        transaction.add(R.id.view_content, appDetailFragment);
+        transaction.commitAllowingStateLoss();
     }
 
 }

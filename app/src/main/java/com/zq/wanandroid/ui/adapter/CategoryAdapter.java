@@ -1,4 +1,4 @@
-package com.zq.wanandroid.ui.activity;
+package com.zq.wanandroid.ui.adapter;
 
 import android.widget.ImageView;
 

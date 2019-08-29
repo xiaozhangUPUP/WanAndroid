@@ -2,9 +2,7 @@ package com.zq.wanandroid.di.component;
 
 import com.zq.wanandroid.di.anno.FragmentScope;
 import com.zq.wanandroid.di.module.AppDetailModule;
-import com.zq.wanandroid.di.module.LoginModule;
-import com.zq.wanandroid.ui.activity.AppDetailActivity;
-import com.zq.wanandroid.ui.fragment.OtherFragment;
+import com.zq.wanandroid.ui.fragment.AppDetailFragment;
 
 import dagger.Component;
 
@@ -14,5 +12,5 @@ import dagger.Component;
 @FragmentScope
 @Component(modules = AppDetailModule.class, dependencies = AppComponent.class)
 public interface AppDetailComponent {
-    void inject(AppDetailActivity activity);
+    void inject(AppDetailFragment fragment);
 }

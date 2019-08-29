@@ -1,15 +1,10 @@
 package com.zq.wanandroid.ui.fragment;
 
-import android.os.Bundle;
 import android.support.design.widget.TextInputLayout;
 import android.support.v7.widget.Toolbar;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -32,8 +27,6 @@ import com.zq.wanandroid.presenter.contract.LoginContract;
 import com.zq.wanandroid.ui.activity.BottomNavActivity;
 
 import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.Unbinder;
 import io.reactivex.Observable;
 import io.reactivex.functions.BiFunction;
 import io.reactivex.functions.Consumer;
@@ -55,8 +48,6 @@ public class OtherFragment extends BaseFragment<LoginPresenter> implements Login
     EditText txtPassword;
     @BindView(R.id.view_password_wrapper)
     TextInputLayout viewPasswordWrapper;
-    @BindView(R.id.activity_login)
-    LinearLayout activityLogin;
     @BindView(R.id.btn_login)
     Button btnLogin;
     @BindView(R.id.btn_logout)
