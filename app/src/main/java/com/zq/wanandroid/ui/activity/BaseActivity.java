@@ -9,13 +9,14 @@ import com.mikepenz.iconics.context.IconicsLayoutInflater;
 import com.zq.wanandroid.MyApplication;
 import com.zq.wanandroid.di.component.AppComponent;
 import com.zq.wanandroid.presenter.BasePresenter;
+import com.zq.wanandroid.presenter.BaseView;
 
 import javax.inject.Inject;
 
 import butterknife.ButterKnife;
 import butterknife.Unbinder;
 
-public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity {
+public abstract class BaseActivity<T extends BasePresenter> extends AppCompatActivity implements BaseView {
 
     private Unbinder unbinder;
 
@@ -48,5 +49,20 @@ public abstract class BaseActivity<T extends BasePresenter> extends AppCompatAct
         if (unbinder != Unbinder.EMPTY) {
             unbinder.unbind();
         }
+    }
+
+    @Override
+    public void showLoading() {
+
+    }
+
+    @Override
+    public void showError(String errorMsg) {
+
+    }
+
+    @Override
+    public void dismissLoading() {
+
     }
 }

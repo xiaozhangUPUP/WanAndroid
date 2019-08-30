@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".SearchActivity">
+    tools:context=".ui.activity.SearchActivity">
 
     <android.support.v7.widget.Toolbar
         android:id="@+id/toolbar"
@@ -58,7 +58,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_centerVertical="true"
-                android:text="历时记录" />
+                android:text="历史记录" />
 
             <ImageView
                 android:id="@+id/btn_clear"

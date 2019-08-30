@@ -7,6 +7,7 @@ import com.zq.wanandroid.http.responsebean.Category;
 import com.zq.wanandroid.http.responsebean.IndexBean;
 import com.zq.wanandroid.http.responsebean.LoginBean;
 import com.zq.wanandroid.http.responsebean.PageBean;
+import com.zq.wanandroid.http.responsebean.SearchResult;
 import com.zq.wanandroid.http.responsebean.Subject;
 import com.zq.wanandroid.http.responsebean.SubjectDetail;
 
@@ -60,5 +61,11 @@ public interface ApiService {
 
     @GET("subject/{id}")
     Observable<BaseBean<SubjectDetail>> subjectDetail(@Path("id") int id);
+
+    @GET("search/suggest")
+    Observable<BaseBean<List<String>>> searchSuggest(@Query("keyword") String keyword);
+
+    @GET("search")
+    Observable<BaseBean<SearchResult>> search(@Query("keyword") String keyword);
 
 }
