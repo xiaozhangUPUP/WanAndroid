@@ -6,7 +6,8 @@
         android:id="@+id/toolBar_item1"
         android:icon="@mipmap/ic_launcher_round"
         android:title="item1"
-        app:showAsAction="ifRoom" />
+        app:actionProviderClass="com.zq.wanandroid.ui.widget.BadgeActionProvider"
+        app:showAsAction="always" />
 
     <item
         android:id="@+id/toolBar_item2"

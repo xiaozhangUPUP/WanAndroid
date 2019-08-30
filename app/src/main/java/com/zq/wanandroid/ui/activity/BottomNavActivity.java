@@ -5,11 +5,16 @@ import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentTransaction;
+import android.support.v4.content.ContextCompat;
+import android.support.v4.graphics.drawable.DrawableCompat;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.mikepenz.iconics.IconicsDrawable;
 import com.zq.wanandroid.R;
@@ -18,6 +23,7 @@ import com.zq.wanandroid.di.component.AppComponent;
 import com.zq.wanandroid.ui.fragment.OtherFragment;
 import com.zq.wanandroid.ui.fragment.bottomNav.HomeFragment;
 import com.zq.wanandroid.ui.fragment.bottomNav.SettingFragment;
+import com.zq.wanandroid.ui.widget.BadgeActionProvider;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -44,6 +50,8 @@ public class BottomNavActivity extends BaseActivity {
     private List<Fragment> fragmentList;
     private IconicsDrawable homeIcon, otherIcon, settingIcon, homeIconChecked, otherIconChecked, settingIconChecked;
 
+    private BadgeActionProvider badgeActionProvider;
+
     @Override
     protected void init() {
         homeIcon = new IconicsDrawable(this, AppIcons.Icon.appicon_bottm_nav_home);
@@ -54,8 +62,28 @@ public class BottomNavActivity extends BaseActivity {
         settingIconChecked = new IconicsDrawable(this, AppIcons.Icon.appicon_bottm_nav_setting).color(Color.RED);
 
         initFragment();
+        initToolBar();
         setListener();
         selectBottomNavFirstItem();
+
+    }
+
+    private void initToolBar() {
+        toolbar.inflateMenu(R.menu.tool_bar_menu);
+
+        MenuItem menuItem = toolbar.getMenu().findItem(R.id.toolBar_item1);
+
+        badgeActionProvider = (BadgeActionProvider) MenuItemCompat.getActionProvider(menuItem);
+
+        badgeActionProvider.setIcon(DrawableCompat.wrap(new IconicsDrawable(this, AppIcons.Icon.appicon_refresh).color(ContextCompat.getColor(this, R.color.white))));
+        badgeActionProvider.setText("5");
+
+        badgeActionProvider.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(BottomNavActivity.this, badgeActionProvider.getBadgeNum() + "", Toast.LENGTH_LONG).show();
+            }
+        });
 
     }
 
@@ -135,7 +163,7 @@ public class BottomNavActivity extends BaseActivity {
     private void setListener() {
         navigation.setItemIconTintList(null);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
-        toolbar.inflateMenu(R.menu.tool_bar_menu);
+
         toolbar.setOnMenuItemClickListener(new Toolbar.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(MenuItem item) {

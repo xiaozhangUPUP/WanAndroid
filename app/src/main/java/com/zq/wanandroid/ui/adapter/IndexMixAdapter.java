@@ -1,15 +1,16 @@
 package com.zq.wanandroid.ui.adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.support.annotation.NonNull;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
@@ -19,15 +20,15 @@ import com.youth.banner.Banner;
 import com.youth.banner.loader.ImageLoader;
 import com.zq.wanandroid.R;
 import com.zq.wanandroid.http.responsebean.IndexBean;
+import com.zq.wanandroid.ui.activity.SubjectActivity;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class IndexMixAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> {
+public class IndexMixAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolder> implements View.OnClickListener {
     public static final int TYPE_BANNER = 1;
     public static final int TYPE_ICON = 2;
     public static final int TYPE_APPS = 3;
@@ -86,7 +87,10 @@ public class IndexMixAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
             bannerViewHolder.banner.start();
 
         } else if (position == 1) {
-
+            IconViewHolder iconViewHolder = (IconViewHolder) holder;
+            iconViewHolder.layoutHotApp.setOnClickListener(this);
+            iconViewHolder.layoutHotGame.setOnClickListener(this);
+            iconViewHolder.layoutHotSubject.setOnClickListener(this);
         } else {
             AppViewHolder appViewHolder = (AppViewHolder) holder;
             AppInfoAdapter appInfoAdapter = AppInfoAdapter
@@ -115,6 +119,13 @@ public class IndexMixAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
         return 4;
     }
 
+    @Override
+    public void onClick(View v) {
+        if (v.getId() == R.id.layout_hot_subject) {
+            context.startActivity(new Intent(context, SubjectActivity.class));
+        }
+    }
+
     public class GlideImageLoader extends ImageLoader {
         @Override
         public void displayImage(Context context, Object path, ImageView imageView) {
@@ -139,9 +150,16 @@ public class IndexMixAdapter extends RecyclerView.Adapter<RecyclerView.ViewHolde
     }
 
     class IconViewHolder extends RecyclerView.ViewHolder {
+        @BindView(R.id.layout_hot_app)
+        LinearLayout layoutHotApp;
+        @BindView(R.id.layout_hot_game)
+        LinearLayout layoutHotGame;
+        @BindView(R.id.layout_hot_subject)
+        LinearLayout layoutHotSubject;
 
         public IconViewHolder(View itemView) {
             super(itemView);
+            ButterKnife.bind(this, itemView);
         }
     }
 

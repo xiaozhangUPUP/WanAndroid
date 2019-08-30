@@ -7,6 +7,8 @@ import com.zq.wanandroid.http.responsebean.Category;
 import com.zq.wanandroid.http.responsebean.IndexBean;
 import com.zq.wanandroid.http.responsebean.LoginBean;
 import com.zq.wanandroid.http.responsebean.PageBean;
+import com.zq.wanandroid.http.responsebean.Subject;
+import com.zq.wanandroid.http.responsebean.SubjectDetail;
 
 import java.util.List;
 
@@ -42,15 +44,21 @@ public interface ApiService {
     Observable<BaseBean<PageBean<AppInfo>>> getFeaturedAppsByCategory(@Path("categoryid") int categoryid, @Query("page") int page);
 
     @GET("category/toplist/{categoryid}")
-    Observable<BaseBean<PageBean<AppInfo>>> getTopListAppsByCategory(@Path("categoryid") int categoryid,@Query("page") int page);
+    Observable<BaseBean<PageBean<AppInfo>>> getTopListAppsByCategory(@Path("categoryid") int categoryid, @Query("page") int page);
 
     @GET("category/newlist/{categoryid}")
-    Observable<BaseBean<PageBean<AppInfo>>> getNewListAppsByCategory(@Path("categoryid") int categoryid,@Query("page") int page);
+    Observable<BaseBean<PageBean<AppInfo>>> getNewListAppsByCategory(@Path("categoryid") int categoryid, @Query("page") int page);
 
     @GET("app/{id}")
     Observable<BaseBean<AppInfo>> getAppDetail(@Path("id") int id);
 
     @POST("login")
     public Observable<BaseBean<LoginBean>> login(@Body LoginRequestBean requestBean);
+
+    @GET("subject/hot")
+    Observable<BaseBean<PageBean<Subject>>> subjects(@Query("page") int page);
+
+    @GET("subject/{id}")
+    Observable<BaseBean<SubjectDetail>> subjectDetail(@Path("id") int id);
 
 }

@@ -1,16 +1,13 @@
 package com.zq.wanandroid.presenter;
 
 import com.zq.wanandroid.common.Constants;
+import com.zq.wanandroid.common.RxBus;
 import com.zq.wanandroid.common.RxHttpResponseCompose;
 import com.zq.wanandroid.common.subscriber.ErrorHandlerObserver;
-import com.zq.wanandroid.common.subscriber.ProgressObserver;
 import com.zq.wanandroid.common.util.ACache;
 import com.zq.wanandroid.common.util.VerificationUtils;
-import com.zq.wanandroid.http.responsebean.IndexBean;
 import com.zq.wanandroid.http.responsebean.LoginBean;
-import com.zq.wanandroid.model.AppInfoModel;
 import com.zq.wanandroid.model.LoginModel;
-import com.zq.wanandroid.presenter.contract.AppInfoContract;
 import com.zq.wanandroid.presenter.contract.LoginContract;
 
 import io.reactivex.disposables.Disposable;
@@ -41,6 +38,7 @@ public class LoginPresenter extends BasePresenter<LoginModel, LoginContract.View
                     public void onNext(LoginBean loginBean) {
                         mView.loginSuccess(loginBean);
                         saveUser(loginBean);
+                        RxBus.getDefault().post(loginBean.getUser());
                     }
 
                     @Override

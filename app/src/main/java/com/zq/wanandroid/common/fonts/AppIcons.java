@@ -104,7 +104,8 @@ public class AppIcons implements ITypeface {
 
         appicon_bottm_nav_home('\ue605'),
         appicon_bottm_nav_other('\ue606'),
-        appicon_bottm_nav_setting('\ue6a9')
+        appicon_bottm_nav_setting('\ue6a9'),
+        appicon_refresh('\ueb9c')
         ;
         char character;
 

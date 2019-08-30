@@ -9,12 +9,14 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
+import com.jakewharton.rxbinding2.InitialValueObservable;
 import com.jakewharton.rxbinding2.view.RxView;
 import com.jakewharton.rxbinding2.widget.RxTextView;
 import com.mikepenz.iconics.IconicsDrawable;
 import com.mikepenz.ionicons_typeface_library.Ionicons;
 import com.zq.wanandroid.R;
 import com.zq.wanandroid.common.Constants;
+import com.zq.wanandroid.common.RxBus;
 import com.zq.wanandroid.common.fonts.AppIcons;
 import com.zq.wanandroid.common.util.ACache;
 import com.zq.wanandroid.di.component.AppComponent;
@@ -24,7 +26,6 @@ import com.zq.wanandroid.http.responsebean.LoginBean;
 import com.zq.wanandroid.http.responsebean.User;
 import com.zq.wanandroid.presenter.LoginPresenter;
 import com.zq.wanandroid.presenter.contract.LoginContract;
-import com.zq.wanandroid.ui.activity.BottomNavActivity;
 
 import butterknife.BindView;
 import io.reactivex.Observable;
@@ -60,6 +61,13 @@ public class OtherFragment extends BaseFragment<LoginPresenter> implements Login
     @Override
     protected void init() {
         initView();
+        RxBus.getDefault().toObservable(User.class)
+        .subscribe(new Consumer<User>() {
+            @Override
+            public void accept(User user) throws Exception {
+               initUser();
+            }
+        });
     }
 
     private void initView() {
@@ -73,8 +81,8 @@ public class OtherFragment extends BaseFragment<LoginPresenter> implements Login
 //            }
 //        });
 
-        Observable<CharSequence> obMobi = RxTextView.textChanges(txtMobi).skipInitialValue();
-        Observable<CharSequence> obPwd = RxTextView.textChanges(txtPassword).skipInitialValue();
+        InitialValueObservable<CharSequence> obMobi = RxTextView.textChanges(txtMobi);
+        InitialValueObservable<CharSequence> obPwd = RxTextView.textChanges(txtPassword);
         Observable.combineLatest(obMobi, obPwd, new BiFunction<CharSequence, CharSequence, Boolean>() {
             @Override
             public Boolean apply(CharSequence charSequence, CharSequence charSequence2) throws Exception {
@@ -157,8 +165,9 @@ public class OtherFragment extends BaseFragment<LoginPresenter> implements Login
 
     @Override
     public void loginSuccess(LoginBean bean) {
-        BottomNavActivity bottomNavActivity = (BottomNavActivity) this.activity;
-        bottomNavActivity.selectBottomNavFirstItem();
+//        BottomNavActivity bottomNavActivity = (BottomNavActivity) this.activity;
+//        bottomNavActivity.selectBottomNavFirstItem();
+        Toast.makeText(activity, "登陆成功", Toast.LENGTH_LONG).show();
     }
 
     private void initUserHeadPhoto(User user) {

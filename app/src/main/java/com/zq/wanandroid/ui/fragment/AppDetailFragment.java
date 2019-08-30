@@ -78,6 +78,7 @@ public class AppDetailFragment extends ProgressFragment<AppDetailPresenter> impl
     public void init() {
         Bundle bundle = this.getArguments();
         appId = bundle.getInt(Constants.APP_ID);
+        // todo
 //        presenter.getAppDetail(appId);
     }
 
