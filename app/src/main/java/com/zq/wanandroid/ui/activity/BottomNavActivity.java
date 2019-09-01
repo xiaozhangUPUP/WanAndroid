@@ -1,5 +1,6 @@
 package com.zq.wanandroid.ui.activity;
 
+import android.content.Intent;
 import android.graphics.Color;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
@@ -173,6 +174,7 @@ public class BottomNavActivity extends BaseActivity {
                         return true;
                     case R.id.toolBar_item2:
                         Log.e(TAG, "onOptionsItemSelected: 22222222");
+                        startActivity(new Intent(BottomNavActivity.this, SearchActivity.class));
                         return true;
                     case R.id.toolBar_item3:
                         Log.e(TAG, "onOptionsItemSelected: 33333333");
