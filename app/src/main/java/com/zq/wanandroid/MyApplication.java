@@ -7,6 +7,7 @@ import com.mikepenz.iconics.Iconics;
 import com.zq.wanandroid.di.component.AppComponent;
 import com.zq.wanandroid.di.component.DaggerAppComponent;
 import com.zq.wanandroid.di.module.AppModule;
+import com.zq.wanandroid.di.module.CacheModule;
 import com.zq.wanandroid.di.module.HttpModule;
 import com.zq.wanandroid.common.fonts.AppIcons;
 
@@ -39,6 +40,7 @@ public class MyApplication extends Application {
 
         appComponent = DaggerAppComponent.builder().appModule(new AppModule(this))
                 .httpModule(new HttpModule())
+                .cacheModule(new CacheModule())
                 .build();
     }
 

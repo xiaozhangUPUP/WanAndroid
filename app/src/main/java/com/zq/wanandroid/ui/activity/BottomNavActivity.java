@@ -10,7 +10,6 @@ import android.support.v4.content.ContextCompat;
 import android.support.v4.graphics.drawable.DrawableCompat;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.Toolbar;
-import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.FrameLayout;
@@ -170,14 +169,12 @@ public class BottomNavActivity extends BaseActivity {
             public boolean onMenuItemClick(MenuItem item) {
                 switch (item.getItemId()) {
                     case R.id.toolBar_item1:
-                        Log.e(TAG, "onOptionsItemSelected: 1111111");
                         return true;
                     case R.id.toolBar_item2:
-                        Log.e(TAG, "onOptionsItemSelected: 22222222");
                         startActivity(new Intent(BottomNavActivity.this, SearchActivity.class));
                         return true;
                     case R.id.toolBar_item3:
-                        Log.e(TAG, "onOptionsItemSelected: 33333333");
+                        startActivity(new Intent(BottomNavActivity.this, SettingActivity.class));
                         return true;
                     default:
                         return false;

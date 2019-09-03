@@ -78,7 +78,6 @@ public class SearchActivity extends BaseActivity<SearchPresenter> implements Sea
         setupSuggestionRecyclerView();
 
         initSearchResultRecycleView();
-
     }
 
     @Override
@@ -199,7 +198,6 @@ public class SearchActivity extends BaseActivity<SearchPresenter> implements Sea
                         return charSequence.toString().trim().length() > 0;
                     }
                 })
-
                 .subscribe(new Consumer<CharSequence>() {
                     @Override
                     public void accept(@NonNull CharSequence charSequence) throws Exception {
@@ -234,26 +232,25 @@ public class SearchActivity extends BaseActivity<SearchPresenter> implements Sea
             }
         });
 
-//        mActionClearBtn.setImageDrawable(new IconicsDrawable(this, Ionicons.Icon.ion_ios_close_empty)
-//                .color(ContextCompat.getColor(this, R.color.white)).sizeDp(16));
-//
-//
-//        mBtnClear.setImageDrawable(new IconicsDrawable(this, Ionicons.Icon.ion_ios_trash_outline)
-//                .color(ContextCompat.getColor(this, R.color.md_grey_600)).sizeDp(16));
+        //        mActionClearBtn.setImageDrawable(new IconicsDrawable(this, Ionicons.Icon.ion_ios_close_empty)
+        //                .color(ContextCompat.getColor(this, R.color.white)).sizeDp(16));
+        //
+        //
+        //        mBtnClear.setImageDrawable(new IconicsDrawable(this, Ionicons.Icon.ion_ios_trash_outline)
+        //                .color(ContextCompat.getColor(this, R.color.md_grey_600)).sizeDp(16));
 
-//        RxView.clicks(btnClear).subscribe();new Consumer<Object>() {
-//
-//            @Override
-//            public void accept(@NonNull Object o) throws Exception {
-//
-//            }
-//        }
+        //        RxView.clicks(btnClear).subscribe();new Consumer<Object>() {
+        //
+        //            @Override
+        //            public void accept(@NonNull Object o) throws Exception {
+        //
+        //            }
+        //        }
     }
 
     private void initHistoryRecycleView(List<String> list) {
         historyAdatper = new SearchHistoryAdatper();
-        historyAdatper.addData(list);
-
+        historyAdatper.setNewData(list);
 
         RecyclerView.LayoutManager lm = new GridLayoutManager(this, 5);
         SpaceItemDecoration2 itemd = new SpaceItemDecoration2(10);

@@ -12,13 +12,13 @@
     <item
         android:id="@+id/toolBar_item2"
         android:icon="@mipmap/ic_launcher_round"
-        android:title="item2"
+        android:title="search"
         app:showAsAction="never" />
 
     <item
         android:id="@+id/toolBar_item3"
         android:icon="@mipmap/ic_launcher_round"
-        android:title="item3"
+        android:title="setting"
         app:showAsAction="never" />
 
 </menu>

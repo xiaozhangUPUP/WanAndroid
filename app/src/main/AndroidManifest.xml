@@ -25,6 +25,7 @@
         <activity android:name=".ui.activity.SearchActivity" />
         <activity android:name=".ui.activity.BottomNavActivity" />
         <activity android:name=".ui.activity.CategoryAppActivity" />
+        <activity android:name=".ui.activity.SettingActivity" />
         <activity
             android:name=".ui.activity.AppDetailActivity"
             android:theme="@style/AppTheme.Transparent" />

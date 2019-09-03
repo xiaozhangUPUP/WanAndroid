@@ -5,6 +5,7 @@ import com.zq.wanandroid.http.responsebean.AppInfo;
 import com.zq.wanandroid.http.responsebean.BaseBean;
 import com.zq.wanandroid.http.responsebean.Category;
 import com.zq.wanandroid.http.responsebean.IndexBean;
+import com.zq.wanandroid.http.responsebean.IndexBeanCache;
 import com.zq.wanandroid.http.responsebean.LoginBean;
 import com.zq.wanandroid.http.responsebean.PageBean;
 import com.zq.wanandroid.http.responsebean.SearchResult;
@@ -31,6 +32,9 @@ public interface ApiService {
 
     @GET("index")
     public Observable<BaseBean<IndexBean>> index();
+
+    @GET("index")
+    public Observable<IndexBeanCache> indexCache();
 
     @GET("toplist")
     public Observable<BaseBean<PageBean<AppInfo>>> topList(@Query("page") int page);

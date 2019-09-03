@@ -3,7 +3,9 @@ package com.zq.wanandroid.di.module;
 import android.app.Application;
 
 import com.google.gson.Gson;
-import com.zq.wanandroid.MyApplication;
+import com.zq.wanandroid.di.anno.FileType;
+
+import java.io.File;
 
 import javax.inject.Singleton;
 
@@ -32,5 +34,19 @@ public class AppModule {
     @Singleton
     public Gson provideGson() {
         return new Gson();
+    }
+
+    @Provides
+    @Singleton
+    @FileType("cache")
+    public File provideCacheDir(Application application) {
+        return application.getCacheDir();
+    }
+
+    @Provides
+    @Singleton
+    @FileType("file")
+    public File provideFileDir(Application application) {
+        return application.getFilesDir();
     }
 }

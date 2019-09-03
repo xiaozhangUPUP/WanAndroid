@@ -2,6 +2,7 @@ package com.zq.wanandroid.di.module;
 
 import com.zq.wanandroid.di.anno.FragmentScope;
 import com.zq.wanandroid.http.ApiService;
+import com.zq.wanandroid.http.CacheProvider;
 import com.zq.wanandroid.model.AppInfoModel;
 import com.zq.wanandroid.presenter.RecommedPresenter;
 import com.zq.wanandroid.presenter.contract.AppInfoContract;
@@ -29,8 +30,8 @@ public class RecommendModule {
 
     @Provides
     @FragmentScope
-    public AppInfoModel provideRecommendModel(ApiService apiService) {
-        return new AppInfoModel(apiService);
+    public AppInfoModel provideRecommendModel(ApiService apiService, CacheProvider cacheProvider) {
+        return new AppInfoModel(apiService, cacheProvider);
     }
 
 }

@@ -2,12 +2,10 @@ package com.zq.wanandroid.di.module;
 
 import com.zq.wanandroid.di.anno.FragmentScope;
 import com.zq.wanandroid.http.ApiService;
+import com.zq.wanandroid.http.CacheProvider;
 import com.zq.wanandroid.model.AppInfoModel;
-import com.zq.wanandroid.model.CategoryModel;
 import com.zq.wanandroid.presenter.AppDetailPresenter;
-import com.zq.wanandroid.presenter.CategoryPresenter;
 import com.zq.wanandroid.presenter.contract.AppInfoContract;
-import com.zq.wanandroid.presenter.contract.CategoryContract;
 
 import dagger.Module;
 import dagger.Provides;
@@ -32,8 +30,8 @@ public class AppDetailModule {
 
     @Provides
     @FragmentScope
-    public AppInfoModel provideAppInfoModel(ApiService apiService) {
-        return new AppInfoModel(apiService);
+    public AppInfoModel provideAppInfoModel(ApiService apiService, CacheProvider cacheProvider) {
+        return new AppInfoModel(apiService, cacheProvider);
     }
 
 }
