@@ -13,7 +13,6 @@ import com.zq.wanandroid.http.responsebean.PageBean;
 import io.reactivex.Observable;
 import io.reactivex.ObservableSource;
 import io.reactivex.functions.Function;
-import io.rx_cache2.EvictProvider;
 import io.rx_cache2.Reply;
 
 /**

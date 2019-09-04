@@ -8,9 +8,11 @@ import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 
 import com.mikepenz.iconics.IconicsDrawable;
+import com.tencent.bugly.crashreport.CrashReport;
 import com.zq.wanandroid.R;
 import com.zq.wanandroid.common.fonts.AppIcons;
 
@@ -20,12 +22,14 @@ import com.zq.wanandroid.common.fonts.AppIcons;
 public class SettingFragment extends Fragment {
 
     private ImageView img;
+    private Button btn;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_setting, container, false);
         img = view.findViewById(R.id.img);
+        btn = view.findViewById(R.id.btn_send_crash);
         return view;
     }
 
@@ -39,6 +43,13 @@ public class SettingFragment extends Fragment {
 
 
         img.setImageDrawable(iconicsDrawable);
+
+        btn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                CrashReport.testJavaCrash();
+            }
+        });
 
     }
 }
