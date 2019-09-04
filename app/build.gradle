@@ -21,6 +21,7 @@ android {
 }
 
 dependencies {
+
     api project(':mylibrary')
     implementation fileTree(include: ['*.jar'], dir: 'libs')
     implementation 'com.android.support:appcompat-v7:27.1.1'
@@ -78,6 +79,9 @@ dependencies {
     // To use Gson
     implementation 'com.github.VictorAlbertos.Jolyglot:gson:0.0.4'
 
-
+    // bugly
     implementation 'com.tencent.bugly:crashreport:latest.release'
+
+    // SmartRefreshLayout
+    implementation 'com.scwang.smartrefresh:SmartRefreshLayout:1.1.0'
 }
